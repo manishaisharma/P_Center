@@ -19,7 +19,7 @@ filename="/data/masharma/Jenkins/J_Unit_Testing/DB_Output.csv"
 ##FILE=open(filename,"w");
 #output=csv.writer(FILE, dialect='excel')
 
-#os.environ["PATH"] = LOCATION + ";" + os.environ["PATH"]
+os.environ["PATH"] = LOCATION + ";" + os.environ["PATH"]
 
 user=sys.argv[1]
 password=sys.argv[2]
