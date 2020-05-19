@@ -10,6 +10,7 @@ import os
 import csv
 import datacompy
 import pandas  as pd
+import sys
 
 LOCATION = "/data/masharma/Jenkins/J_OracleInstantClient/instantclient_19_6"
 src_files=""   
@@ -20,19 +21,22 @@ filename="/data/masharma/Jenkins/J_Unit_Testing/DB_Output.csv"
 
 #os.environ["PATH"] = LOCATION + ";" + os.environ["PATH"]
 
+user=sys.argv[1]
+password=sys.argv[2]
 
-connection_string = '''/@(DESCRIPTION=
+connection_string = user+'/'+password +'''@(DESCRIPTION=
                                             (ADDRESS_LIST=
                                                 (ADDRESS=
                                                     (PROTOCOL=TCP)
-                                                    (HOST)
+                                                    (HOST=10.100.253.11)
                                                     (PORT=1521)
                                                 )
                                             )
                                             (CONNECT_DATA=
-                                                (SID=)
+                                                (SID=ORA12C)
                                             )
                                         )'''
+
 connection = cx_Oracle.connect(connection_string)
 
 SQL="SELECT SOURCE_ROW_NUM, SOURCE_ID, CUSTOMER_NAME, CUSTOMER_AGE, CUSTOMER_ADDRESS, CUSTOMER_GENDER, CUSTOMER_BILLING_AMOUNT FROM TGT_CUSTOMER_DATA"
