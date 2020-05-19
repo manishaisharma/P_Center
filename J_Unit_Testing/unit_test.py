@@ -21,16 +21,16 @@ filename="/data/masharma/Jenkins/J_Unit_Testing/DB_Output.csv"
 #os.environ["PATH"] = LOCATION + ";" + os.environ["PATH"]
 
 
-connection_string = '''INFA_USER/India123@(DESCRIPTION=
+connection_string = '''/@(DESCRIPTION=
                                             (ADDRESS_LIST=
                                                 (ADDRESS=
                                                     (PROTOCOL=TCP)
-                                                    (HOST=10.100.253.11)
+                                                    (HOST)
                                                     (PORT=1521)
                                                 )
                                             )
                                             (CONNECT_DATA=
-                                                (SID=ORA12C)
+                                                (SID=)
                                             )
                                         )'''
 connection = cx_Oracle.connect(connection_string)
