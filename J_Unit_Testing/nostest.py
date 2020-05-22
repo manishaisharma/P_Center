@@ -27,8 +27,8 @@ def test_connection():
         src_files=""   
         
         filename="/data/masharma/Jenkins/J_Unit_Testing/DB_Output.csv"
-        user='Infa_user'
-        password='India123'
+        user=
+        password=
         
         connection_string = user+'/'+password +'''@(DESCRIPTION=
                                                     (ADDRESS_LIST=
