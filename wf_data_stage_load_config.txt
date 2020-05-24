@@ -1,0 +1,9 @@
+INFA_WORKDIR=/data/masharma/Jenkins/J_Informatica
+SRC_REP=INFA_REPO 
+DOMAIN=Domain_Infa
+INFA_INTEGRATION_SERVICE=INFA_INTEGRATION_SERVICE
+FOLDER=masharma
+SERVER=10.100.253.11
+WORKFLOW=wf_data_stage_load
+Input_File=/data/masharma/CG_sourcefiles/ABC.txt
+Output_File=TGT_CUSTOMER_DATA
