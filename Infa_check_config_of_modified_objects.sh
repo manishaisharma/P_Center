@@ -12,6 +12,7 @@ LogFileName=Infa_Check_comfig_Objects_$date.log
 
 if  [ -f $WORKSPACE/list_modified_objects.txt ]; then
 LST_CNT=`cat $WORKSPACE/list_modified_objects.txt | grep workflow| cut -d " " -f 2|wc -l`
+echo "2 jobs found in   modified objects list $WORKSPACE/list_modified_objects.txt,check logs at $LogFileDir/$LogFileName " >>$LogFileDir/$LogFileName
 else
 echo "No such file  $WORKSPACE/list_modified_objects.txt,check logs at $LogFileDir/$LogFileName " >>$LogFileDir/$LogFileName
 exit 1
@@ -35,9 +36,8 @@ else
 
 config='_config.txt'
 
-cat test.txt | grep workflow| cut -d " " -f 2 | while read line
+cat $WORKSPACE/list_modified_objects.txt | grep workflow| cut -d " " -f 2 | while read line
 do
-echo  line is $line$config
 filename=$line$config
 if  [ -f $filename ]; then
 echo "Config file $filename for job $line exists, check logs at $LogFileDir/$LogFileName " >>$LogFileDir/$LogFileName
