@@ -12,8 +12,8 @@ LogFileName=Infa_Check_comfig_Objects_$date.log
 
 if  [ -f $WORKSPACE/list_modified_objects.txt ]; then
 LST_CNT=`cat $WORKSPACE/list_modified_objects.txt | grep workflow| cut -d " " -f 2|wc -l`
-echo "2 jobs found in   modified objects list $WORKSPACE/list_modified_objects.txt " >>$LogFileDir/$LogFileName
-echo "2 jobs found in   modified objects list $WORKSPACE/list_modified_objects.txt " 
+echo "$LST_CNT jobs found in   modified objects list $WORKSPACE/list_modified_objects.txt " >>$LogFileDir/$LogFileName
+echo "$LST_CNT jobs found in   modified objects list $WORKSPACE/list_modified_objects.txt " 
 else
 echo "No such file  $WORKSPACE/list_modified_objects.txt,check logs at $LogFileDir/$LogFileName " >>$LogFileDir/$LogFileName
 echo "No such file  $WORKSPACE/list_modified_objects.txt,check logs at $LogFileDir/$LogFileName " 
