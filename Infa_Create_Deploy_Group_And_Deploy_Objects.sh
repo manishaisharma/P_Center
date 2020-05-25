@@ -19,7 +19,7 @@ LogFileName=Infa_Deployment_Objects_$date.log
 export USERNAME=$1
 export PASSWORD=$2
 
-export Label_Query_Name=$4
+#export Label_Query_Name=$4
 #export SRC_REP=$3 
 #export DOMAIN=$4
 #export INFA_INTEGRATION_SERVICE=$5
