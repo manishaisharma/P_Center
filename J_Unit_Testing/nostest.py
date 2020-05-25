@@ -25,27 +25,37 @@ def test_connection():
         
         LOCATION = "/usr/lib/oracle/19.3/client64/lib"
         src_files=""   
-        
+        REPO_QUERY_LOCATION='Output_table_query.txt'  
         filename="/data/masharma/Jenkins/J_Unit_Testing/DB_Output.csv"
-        user=
-        password=
-        
+        db_credentials_filename="/data/masharma/Jenkins/J_Informatica/creds.prm"
+        creds = open(db_credentials_filename, 'r')
+        lines = creds.readline()
+        columns = lines.split(" ")
+        user= columns[0]
+        password=columns[1]    
+        host= columns[2]
+        SID=columns[3]
         connection_string = user+'/'+password +'''@(DESCRIPTION=
-                                                    (ADDRESS_LIST=
-                                                        (ADDRESS=
-                                                            (PROTOCOL=TCP)
-                                                            (HOST=10.100.253.11)
-                                                            (PORT=1521)
-                                                        )
-                                                    )
-                                                    (CONNECT_DATA=
-                                                        (SID=ORA12C)
-                                                    )
-                                                )'''
+                                                            (ADDRESS_LIST=
+                                                                (ADDRESS=
+                                                                    (PROTOCOL=TCP)
+                                                                    (HOST=''' +host+''')
+                                                                    (PORT=1521)
+                                                                )
+                                                            )
+                                                            (CONNECT_DATA=
+                                                                (SID='''+SID+''')
+                                                            )
+                                                        )'''
         connection = cx_Oracle.connect(connection_string)
-        SQL="SELECT SOURCE_ROW_NUM, SOURCE_ID, CUSTOMER_NAME, CUSTOMER_AGE, CUSTOMER_ADDRESS, CUSTOMER_GENDER, CUSTOMER_BILLING_AMOUNT FROM TGT_CUSTOMER_DATA"
         cursor = connection.cursor()
-        cursor.execute(SQL)
+        with open(REPO_QUERY_LOCATION,'r') as SQL:            
+            for statement in SQL:
+                cursor.execute(statement)
+#        SQL="SELECT SOURCE_ROW_NUM, SOURCE_ID, CUSTOMER_NAME, CUSTOMER_AGE, CUSTOMER_ADDRESS, CUSTOMER_GENDER, CUSTOMER_BILLING_AMOUNT FROM TGT_CUSTOMER_DATA"
+#        cursor = connection.cursor()
+#        cursor.execute(SQL)
+        
         with open(filename, 'w') as fout:
             writer = csv.writer(fout)
             writer.writerow([ i[0] for i in cursor.description ]) # heading row

@@ -5,5 +5,5 @@ INFA_INTEGRATION_SERVICE=INFA_INTEGRATION_SERVICE
 FOLDER=masharma
 SERVER=10.100.253.11
 WORKFLOW=wf_data_stage_load
-Input_File=/data/masharma/CG_sourcefiles/ABC.txt
-Output_File=TGT_CUSTOMER_DATA
+Input_File=/data/masharma/Jenkins/J_Unit_Testing/Source_data.csv
+Output_File=Output_table_query.txt
