@@ -36,7 +36,7 @@ if [ $RETURN_CODE == 0 ]
 then 
 	echo " Connected to the Repository INFA_REPO, check logs at $LogFileDir/$LogFileName "
 	
-	pmrep createdeploymentgroup -p $DEPLOYMENT_GROUP_NAME -t dynamic -q $Label_Query_Name -u shared 2>>$LogFileDir/$LogFileName	
+	pmrep createdeploymentgroup -p $DEPLOYMENT_GROUP_NAME -t dynamic -q $Label_Query_Name -u shared >>$LogFileDir/$LogFileName	
 	RETURN_CODE=$?
 	echo "RETURN_CODE: "$RETURN_CODE  >>$LogFileDir/$LogFileName
 
