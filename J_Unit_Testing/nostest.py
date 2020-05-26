@@ -7,6 +7,7 @@ Created on Wed May 20 15:45:58 2020
 
 
 import cx_Oracle
+from testconfig import config
 
 import csv
 import datacompy
