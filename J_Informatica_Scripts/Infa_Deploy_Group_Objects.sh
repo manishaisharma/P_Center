@@ -41,7 +41,7 @@ then
 	echo " Connected to the Repository INFA_REPO, check logs at $LogFileDir/$LogFileName "
 	echo $DEPLOYMENT_GROUP_NAME  $Label_Query_Name
 	
-	pmrep deploydeploymentgroup -p $DEPLOYMENT_GROUP_NAME -c $Jenkins_workspace/sample_dg.xml -r $TGT_REP -n $USERNAME -s native -x $PASSWORD -d $DOMAIN -l $LogFileDir/$DEPLOYMENT_GROUP_NAME.log
+	pmrep deploydeploymentgroup -p $DEPLOYMENT_GROUP_NAME -c $Jenkins_workspace/J_Deploy_Config/sample_dg.xml -r $TGT_REP -n $USERNAME -s native -x $PASSWORD -d $DOMAIN -l $LogFileDir/$DEPLOYMENT_GROUP_NAME.log
 	
 	RETURN_CODE=$?
 	echo "RETURN_CODE: "$RETURN_CODE  >>$LogFileDir/$LogFileName
