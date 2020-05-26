@@ -2,7 +2,7 @@
 
 export WORKSPACE=$1
 
-Jenkins_workspace=/var/lib/jenkins/workspace/Informatica_Start_Pull_Artifcats
+Jenkins_workspace=$WORKSPACE
 INFA_WORKDIR=`cat $Jenkins_workspace/Informatica_Job_config.prm | grep INFA_WORKDIR | cut -d "=" -f 2`
 
 
