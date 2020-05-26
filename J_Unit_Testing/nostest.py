@@ -17,12 +17,13 @@ import coverage
 #python -m unittest test1.TestStringMethods.test_connection
 #python -m unittest -v test1
 
-
+connection_string=''
 
         
 def test_connection():
       
-        
+        print("first argument is " + sys.argv[0])
+        print("second argument is " + sys.argv[1])
         LOCATION = "/usr/lib/oracle/19.3/client64/lib"
         src_files=""   
         REPO_QUERY_LOCATION='/var/lib/jenkins/workspace/Informatica_Start_Pull_Artifcats/Output_table_query.txt'  
