@@ -40,6 +40,7 @@ then
 			if [ $? == 0 ]
 			then 
 				echo "Modified Objects list fectched from Reposirtory, check logs at $LogFileDir/$LogFileName "
+				echo "Modified Objects list present at $WORKSPACE/list_modified_objects.txt"
 			else
 				echo "Failed to EXECUTE job,  check logs at $LogFileDir/$LogFileName"
 				exit 1
