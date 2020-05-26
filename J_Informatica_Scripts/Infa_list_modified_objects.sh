@@ -36,7 +36,7 @@ RETURN_CODE=$?
 if [ $RETURN_CODE == 0 ]
 then 
 	echo " Connected to the Repository INFA_REPO, check logs at $LogFileDir/$LogFileName "
-	pmrep executequery -q $Label_Query_Name> $WORKSPACE/list_modified_objects.txt
+	pmrep executequery -q $Label_Query_Name> $WORKSPACE/Jenkins_Files/list_modified_objects.txt
 			if [ $? == 0 ]
 			then 
 				echo "Modified Objects list fectched from Reposirtory, check logs at $LogFileDir/$LogFileName "
