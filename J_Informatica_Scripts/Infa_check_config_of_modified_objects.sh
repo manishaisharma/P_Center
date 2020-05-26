@@ -49,7 +49,7 @@ filename=$line$config
 if  [ -f $location/$filename ]; then
 echo "Config file $filename for job $line exists, check logs at $LogFileDir/$LogFileName " >>$LogFileDir/$LogFileName
 echo "Config file $filename for job $line exists, check logs at $LogFileDir/$LogFileName " 
-echo $line>>$WORKSPACE/Jenkins_File/List_of_Jobs_with_valid_config.txt
+echo $line>>$WORKSPACE/Jenkins_Files/List_of_Jobs_with_valid_config.txt
 else
 echo "Config file $filename for job $line not exists, check logs at $LogFileDir/$LogFileName " >>$LogFileDir/$LogFileName
 echo "Config file $filename for job $line not exists, check logs at $LogFileDir/$LogFileName " 
