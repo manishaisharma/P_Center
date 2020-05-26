@@ -2,6 +2,7 @@
 export USERNAME=$1
 export PASSWORD=$2
 export WORKSPACE=$3
+WORKFLOW=''
 export WORKFLOW=$4
 
 Jenkins_workspace=$WORKSPACE
