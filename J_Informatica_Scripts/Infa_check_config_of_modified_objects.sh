@@ -39,7 +39,7 @@ else
 
 
 
-config='_config.txt'
+config='_config.ini'
 location=$WORKSPACE/J_Config
 echo $location
 
