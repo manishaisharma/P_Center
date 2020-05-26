@@ -1,6 +1,10 @@
 #!/usr/bin/bash
 
-Jenkins_workspace=/var/lib/jenkins/workspace/Informatica_Start_Pull_Artifcats
+export USERNAME=$1
+export PASSWORD=$2
+export WORKSPACE=$3
+Jenkins_workspace=$WORKSPACE
+#Jenkins_workspace=/var/lib/jenkins/workspace/Informatica_Start_Pull_Artifcats
 
 SRC_REP=`cat $Jenkins_workspace/Informatica_Job_config.prm | grep SRC_REP | cut -d "=" -f 2`
 TGT_REP=`cat $Jenkins_workspace/Informatica_Job_config.prm | grep SRC_REP | cut -d "=" -f 2`
@@ -11,14 +15,13 @@ FOLDER=`cat $Jenkins_workspace/Informatica_Job_config.prm | grep FOLDER | cut -d
 INFA_WORKDIR=`cat $Jenkins_workspace/Informatica_Job_config.prm | grep INFA_WORKDIR | cut -d "=" -f 2`
 DEPLOYMENT_GROUP_NAME=`cat $Jenkins_workspace/Informatica_Job_config.prm | grep DEPLOYMENT_GROUP_NAME | cut -d "=" -f 2`
 Label_Query_Name=`cat $Jenkins_workspace/Informatica_Job_config.prm | grep Label_Query_Name | cut -d "=" -f 2`
-
+BASH_PROFILE_FILE=`cat $Jenkins_workspace/Informatica_Job_config.prm | grep BASH_PROFILE_FILE | cut -d "=" -f 2`
 
 
 LogFileDir=$INFA_WORKDIR/Logs
 date=`date +'%Y-%m-%d%H%M%S'`
 LogFileName=Infa_Objects_Deploy_Status_$date.log
-export USERNAME=$1
-export PASSWORD=$2
+
 
 #export Label_Query_Name=$4
 #export SRC_REP=$3 
@@ -30,7 +33,7 @@ export PASSWORD=$2
 
 cat /dev/null>$LogFileDir/$LogFileName
 cd $INFA_WORKDIR
-. /data/masharma/Jenkins/J_Informatica/.bash_profile 
+. $BASH_PROFILE_FILE 
 pmrep connect -r $SRC_REP -d $DOMAIN -n $USERNAME -x $PASSWORD >>$LogFileDir/$LogFileName
 RETURN_CODE=$?
 if [ $RETURN_CODE == 0 ]
