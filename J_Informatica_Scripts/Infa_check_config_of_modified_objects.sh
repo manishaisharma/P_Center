@@ -40,11 +40,13 @@ else
 
 
 config='_config.txt'
+location=$WORKSPACE/J_Config
+echo $location
 
 cat $WORKSPACE/list_modified_objects.txt | grep workflow| cut -d " " -f 2 | while read line
 do
 filename=$line$config
-if  [ -f $filename ]; then
+if  [ -f $location/$filename ]; then
 echo "Config file $filename for job $line exists, check logs at $LogFileDir/$LogFileName " >>$LogFileDir/$LogFileName
 echo "Config file $filename for job $line exists, check logs at $LogFileDir/$LogFileName " 
 echo $line>>$WORKSPACE/List_of_Jobs_with_valid_config.txt
