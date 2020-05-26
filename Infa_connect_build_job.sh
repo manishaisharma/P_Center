@@ -2,8 +2,9 @@
 export USERNAME=$1
 export PASSWORD=$2
 export WORKSPACE=$3
-export WORKFLOW=''
 export WORKFLOW=$4
+
+echo $WORKFLOW
 
 Jenkins_workspace=$WORKSPACE
 
@@ -27,7 +28,7 @@ LogFileName=Infa_Jenkins_Login_$date.log
 #export INFA_INTEGRATION_SERVICE=$5
 #export FOLDER=$6
 #export WORKFLOW=$7
-echo $SRC_REP $DOMAIN $INFA_INTEGRATION_SERVICE $FOLDER $WORKFLOW
+#echo $SRC_REP $DOMAIN $INFA_INTEGRATION_SERVICE $FOLDER $WORKFLOW
 
 cat /dev/null>$LogFileDir/$LogFileName
 cd $INFA_WORKDIR
