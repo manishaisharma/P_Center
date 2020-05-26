@@ -26,7 +26,7 @@ def test_connection():
         
         LOCATION = "/usr/lib/oracle/19.3/client64/lib"
         src_files=""   
-        REPO_QUERY_LOCATION=config['wf_data_stage_load']['REPO_QUERY_LOCATION']
+        REPO_QUERY_LOCATION=config['myjob']['filename']
         filename="/data/masharma/Jenkins/J_Unit_Testing/DB_Output.csv"
         db_credentials_filename="/data/masharma/Jenkins/J_Informatica/creds.prm"
         creds = open(db_credentials_filename, 'r')
