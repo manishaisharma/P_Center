@@ -1,6 +1,10 @@
 #!/usr/bin/bash
 
-Jenkins_workspace=/var/lib/jenkins/workspace/Informatica_Start_Pull_Artifcats
+export USERNAME=$1
+export PASSWORD=$2
+export WORKSPACE=$3
+
+Jenkins_workspace=$WORKSPACE
 
 SRC_REP=`cat $Jenkins_workspace/Informatica_Job_config.prm | grep SRC_REP | cut -d "=" -f 2`
 DOMAIN=`cat $Jenkins_workspace/Informatica_Job_config.prm | grep DOMAIN | cut -d "=" -f 2`
@@ -14,9 +18,7 @@ Label_Query_Name=`cat $Jenkins_workspace/Informatica_Job_config.prm | grep Label
 LogFileDir=$INFA_WORKDIR/Logs
 date=`date +'%Y-%m-%d%H%M%S'`
 LogFileName=Infa_Modified_Objects_$date.log
-export USERNAME=$1
-export PASSWORD=$2
-export WORKSPACE=$3
+
 #export Label_Query_Name=$4
 #export SRC_REP=$3 
 #export DOMAIN=$4
