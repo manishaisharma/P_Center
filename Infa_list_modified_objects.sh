@@ -13,7 +13,7 @@ FOLDER=`cat $Jenkins_workspace/Informatica_Job_config.prm | grep FOLDER | cut -d
 #WORKFLOW=`cat $Jenkins_workspace/Informatica_Job_config.prm | grep WORKFLOW | cut -d "=" -f 2`
 INFA_WORKDIR=`cat $Jenkins_workspace/Informatica_Job_config.prm | grep INFA_WORKDIR | cut -d "=" -f 2`
 Label_Query_Name=`cat $Jenkins_workspace/Informatica_Job_config.prm | grep Label_Query_Name | cut -d "=" -f 2`
-
+BASH_PROFILE_FILE=`cat $Jenkins_workspace/Informatica_Job_config.prm | grep BASH_PROFILE_FILE | cut -d "=" -f 2`
 
 LogFileDir=$INFA_WORKDIR/Logs
 date=`date +'%Y-%m-%d%H%M%S'`
@@ -30,7 +30,7 @@ echo $SRC_REP $DOMAIN $INFA_INTEGRATION_SERVICE $FOLDER $WORKFLOW
 
 cat /dev/null>$LogFileDir/$LogFileName
 cd $INFA_WORKDIR
-. /data/masharma/Jenkins/J_Informatica/.bash_profile 
+. $BASH_PROFILE_FILE 
 pmrep connect -r $SRC_REP -d $DOMAIN -n $USERNAME -x $PASSWORD >>$LogFileDir/$LogFileName
 RETURN_CODE=$?
 if [ $RETURN_CODE == 0 ]

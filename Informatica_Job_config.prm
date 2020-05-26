@@ -6,3 +6,4 @@ FOLDER=masharma
 WORKFLOW=wf_data_stage_load
 DEPLOYMENT_GROUP_NAME=DEPLOYMENT_GROUP_SPRINT3
 Label_Query_Name=MODIFIED_OBJECTS
+BASH_PROFILE_FILE=/data/masharma/Jenkins/J_Informatica/.bash_profile
