@@ -58,5 +58,5 @@ def repo_scan():
             
         cursor.close()
         connection.close()
-        assertGreater(objects_changed, 0)
+        assert(objects_changed)
         
