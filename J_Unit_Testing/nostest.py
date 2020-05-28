@@ -73,11 +73,11 @@ def test_idatacompare():
         joincolumns=config['myjob']['joincolumns']
         df1 = pd.read_csv(srccsvframe)
         df2 = pd.read_csv(tgtcsvfarme)
-        print(joincolumns)
+        print('['+joincolumns+']')
         compare = datacompy.Compare(
             df1,
             df2,
-            join_columns=[joincolumns],  #You can also specify a list of columns eg ['policyID','statecode']
+            join_columns='['+joincolumns+']',  #You can also specify a list of columns eg ['policyID','statecode']
             abs_tol=0, #Optional, defaults to 0
             rel_tol=0, #Optional, defaults to 0
             df1_name='Source_Data', #Optional, defaults to 'df1'
