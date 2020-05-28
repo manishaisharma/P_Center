@@ -70,12 +70,13 @@ def test_connection():
 def test_idatacompare():
         srccsvframe=config['myjob']['srcfilename']
         tgtcsvfarme=config['myjob']['dboutputfile']
+        join_columns=config['myjob']['joincolumns']
         df1 = pd.read_csv(srccsvframe)
         df2 = pd.read_csv(tgtcsvfarme)
         compare = datacompy.Compare(
             df1,
             df2,
-            join_columns=['SOURCE_ROW_NUM', 'SOURCE_ID', 'CUSTOMER_NAME', 'CUSTOMER_AGE','CUSTOMER_ADDRESS', 'CUSTOMER_GENDER', 'CUSTOMER_BILLING_AMOUNT'],  #You can also specify a list of columns eg ['policyID','statecode']
+            join_columns=[join_columns],  #You can also specify a list of columns eg ['policyID','statecode']
             abs_tol=0, #Optional, defaults to 0
             rel_tol=0, #Optional, defaults to 0
             df1_name='Source_Data', #Optional, defaults to 'df1'
