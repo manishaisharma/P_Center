@@ -74,7 +74,6 @@ def test_idatacompare():
         df1 = pd.read_csv(srccsvframe)
         df2 = pd.read_csv(tgtcsvfarme)
         col = joincolumns.strip('][').split(',') 
-        print(col)
         compare = datacompy.Compare(
             df1,
             df2,
