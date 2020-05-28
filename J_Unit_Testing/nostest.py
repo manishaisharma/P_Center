@@ -73,7 +73,7 @@ def test_idatacompare():
         joincolumns=config['myjob']['joincolumns']
         df1 = pd.read_csv(srccsvframe)
         df2 = pd.read_csv(tgtcsvfarme)
-        col = joincolumns.strip('][').split(', ') 
+        col = joincolumns.strip('][').split(',') 
         print(col)
         compare = datacompy.Compare(
             df1,
