@@ -76,7 +76,7 @@ def test_idatacompare():
         compare = datacompy.Compare(
             df1,
             df2,
-            join_columns=joincolumns,  #You can also specify a list of columns eg ['policyID','statecode']
+            join_columns=joincolumns  #You can also specify a list of columns eg ['policyID','statecode']
             abs_tol=0, #Optional, defaults to 0
             rel_tol=0, #Optional, defaults to 0
             df1_name='Source_Data', #Optional, defaults to 'df1'
