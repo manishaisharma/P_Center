@@ -69,8 +69,9 @@ def test_connection():
         
 def test_idatacompare():
         srccsvframe=config['myjob']['srcfilename']
+        tgtcsvfarme=config['myjob']['dboutputfile']
         df1 = pd.read_csv(srccsvframe)
-        df2 = pd.read_csv(output_filename)
+        df2 = pd.read_csv(tgtcsvfarme)
         compare = datacompy.Compare(
             df1,
             df2,
