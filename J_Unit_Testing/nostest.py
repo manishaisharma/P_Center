@@ -26,9 +26,9 @@ def test_connection():
         
         LOCATION = "/usr/lib/oracle/19.3/client64/lib"
         src_files=""   
-        REPO_QUERY_LOCATION=config['myjob']['filename']
-        filename="/data/masharma/Jenkins/J_Unit_Testing/DB_Output.csv"
-        db_credentials_filename="/data/masharma/Jenkins/J_Informatica/creds.prm"
+        REPO_QUERY_LOCATION=config['myjob']['tgtsqlfilename']
+        output_filename=config['myjob']['dboutputfile']
+        db_credentials_filename=config['myjob']['dbcredsfile']
         creds = open(db_credentials_filename, 'r')
         lines = creds.readline()
         columns = lines.split(" ")
@@ -57,7 +57,7 @@ def test_connection():
 #        cursor = connection.cursor()
 #        cursor.execute(SQL)
         
-        with open(filename, 'w') as fout:
+        with open(output_filename, 'w') as fout:
             writer = csv.writer(fout)
             writer.writerow([ i[0] for i in cursor.description ]) # heading row
             writer.writerows(cursor.fetchall())    
@@ -68,8 +68,9 @@ def test_connection():
         assert (cursor)
         
 def test_idatacompare():
-        df1 = pd.read_csv('/data/masharma/Jenkins/J_Unit_Testing/Source_data.csv')
-        df2 = pd.read_csv('/data/masharma/Jenkins/J_Unit_Testing/DB_Output.csv')
+        srccsvframe=config['myjob']['srcfilename']
+        df1 = pd.read_csv(srccsvframe)
+        df2 = pd.read_csv(output_filename)
         compare = datacompy.Compare(
             df1,
             df2,
@@ -79,8 +80,8 @@ def test_idatacompare():
             df1_name='Source_Data', #Optional, defaults to 'df1'
             df2_name='Database_Data' #Optional, defaults to 'df2'
         )
-        
-        f1 = open('/data/masharma/Jenkins/J_Unit_Testing/compare_Report.txt','w')
+        output_report_filename=config['myjob']['comparereport']
+        f1 = open(output_report_filename,'w')
         print(compare.report(),file=f1)
         f1.close()
         assert (compare.matches())  
