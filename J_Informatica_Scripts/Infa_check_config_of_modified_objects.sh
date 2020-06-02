@@ -10,7 +10,7 @@ LogFileDir=$INFA_WORKDIR/Logs
 date=`date +'%Y-%m-%d%H%M%S'`
 LogFileName=Infa_Check_comfig_Objects_$date.log
 cat /dev/null>$LogFileDir/$LogFileName
-cat /dev/null>$WORKSPACE/List_of_Jobs_with_valid_config.txt
+cat /dev/null>$WORKSPACE/Jenkins_Files/List_of_Jobs_with_valid_config.txt
 
 if  [ -f $WORKSPACE/list_modified_objects.txt ]; then
 LST_CNT=`cat $WORKSPACE/list_modified_objects.txt | grep workflow| cut -d " " -f 2|wc -l`
