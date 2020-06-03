@@ -126,4 +126,7 @@ def prepare_source_data():
         f1.close()
         assert (compare.matches())  
 
-
+if __name__ == "__main__":
+    test_connection_load_target_data()
+    prepare_source_data()
+    
