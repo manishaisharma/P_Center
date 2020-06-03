@@ -94,7 +94,7 @@ def prepare_source_data():
         frames = [df3,df4]
         df_inner = pd.merge(df3, df4, on=Key, how='inner')
         df_inner['Date_received']=df_inner['Date_received'].str.slice(6)
-        agg=df_inner.groupby(["RAND_CLIENT", "Date_received"])["Complaint_ID"].count()>3
+        agg=df_inner.groupby(["RAND_CLIENT", "Date_received"])["Complaint_ID"].count()>2
         agg2=df_inner.groupby(["RAND_CLIENT", "Date_received"])["Complaint_ID"].count().reset_index(name='counts')
         agg2=agg2.loc[agg.values==True]
         aggsrcdata = agg2  #[agg2.counts >2]
