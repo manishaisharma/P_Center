@@ -98,7 +98,7 @@ def prepare_source_data():
         agg2=df_inner.groupby(["RAND_CLIENT", "Date_received"])["Complaint_ID"].count().reset_index(name='counts')
         agg2=agg2.loc[agg.values==True]
         aggsrcdata = agg2  #[agg2.counts >2]
-        agg2.to_csv('/data/masharma/dd.csv')
+        agg2.to_csv('/data/masharma/dd.csv', index=False)
        
         
         
