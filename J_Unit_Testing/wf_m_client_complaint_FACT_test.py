@@ -21,13 +21,13 @@ import coverage
 
 
         
-def test_connection():
+def test_connection_load_target_data():
       
         
         LOCATION = "/usr/lib/oracle/19.3/client64/lib"
         src_files=""   
-        REPO_QUERY_LOCATION=config['myjob2']['tgtsqlfilename']
-        output_filename=config['myjob2']['dboutputfile']
+        
+        
         db_credentials_filename=config['myjob2']['dbcredsfile']
         creds = open(db_credentials_filename, 'r')
         lines = creds.readline()
@@ -50,25 +50,65 @@ def test_connection():
                                                         )'''
         connection = cx_Oracle.connect(connection_string)
         cursor = connection.cursor()
+        
+        
+        REPO_QUERY_LOCATION=config['myjob2']['tgtsqlfilename']
         with open(REPO_QUERY_LOCATION,'r') as SQL:            
             for statement in SQL:
                 cursor.execute(statement)
-        
-        with open(output_filename, 'w') as fout:
+                
+        db_output_filename=config['myjob2']['dboutputfile']
+        with open(db_output_filename, 'w') as fout:
             writer = csv.writer(fout)
             writer.writerow([ i[0] for i in cursor.description ]) # heading row
             writer.writerows(cursor.fetchall())    
+            
+            
+            
+        REPO_QUERY_LOCATION2=config['myjob2']['stagesqlfilename']
+        with open(REPO_QUERY_LOCATION2,'r') as SQL:            
+            for statement in SQL:
+                cursor.execute(statement)
+                
+        db_stageoutput_filename2=config['myjob2']['stageoutputfile']
+        with open(db_stageoutput_filename2, 'w') as fout:
+            writer = csv.writer(fout)
+            writer.writerow([ i[0] for i in cursor.description ]) # heading row
+            writer.writerows(cursor.fetchall())   
+            
+        
             
         cursor.close()
         connection.close()
         fout.close()
         assert (cursor)
         
-def test_idatacompare():
-        aggsrcfilename=config['myjob2']['aggsrcfilename']
+        
+def prepare_source_data():
+        srcfilename=config['myjob2']['srcfilename']
+        stageoutputfile=config['myjob2']['stageoutputfile']
+        Key=config['myjob2']['Key']
+        df3 = pd.read_csv(srcfilename)
+        df4 = pd.read_csv(stageoutputfile)
+        
+        frames = [df3,df4]
+        df_inner = pd.merge(df3, df4, on=Key, how='inner')
+        df_inner['Date_received']=df_inner['Date_received'].str.slice(6)
+        agg=df_inner.groupby(["RAND_CLIENT", "Date_received"])["Complaint_ID"].count()>2
+        agg2=df_inner.groupby(["RAND_CLIENT", "Date_received"])["Complaint_ID"].count().reset_index(name='counts')
+        agg2=agg2.loc[agg.values==True]
+        aggsrcdata = agg2[agg2.counts >2]
+       
+        
+        
+          
+
+        
+#def test_idatacompare():
+#        aggsrcfilename=config['myjob2']['aggsrcfilename']
         tgtcsvfarme=config['myjob2']['dboutputfile']
         joincolumns=config['myjob2']['joincolumns']
-        df1 = pd.read_csv(aggsrcfilename)
+        df1 = pd.read_csv(aggsrcdata)
         df2 = pd.read_csv(tgtcsvfarme)
         col = joincolumns.strip('][').split(',') 
         compare = datacompy.Compare(
